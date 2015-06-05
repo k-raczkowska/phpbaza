@@ -44,12 +44,14 @@ if (isset($_GET['userID'])) {
     // echoing JSON response
     echo json_encode($response);
 	} else{
-		
+    // no products found
+		$response["success"] = -1;
+		$response["message"] = "No exercises found";
+		echo json_encode($response);
 	}
 } else {
-    // no products found
     $response["success"] = 0;
-    $response["message"] = "No products found";
+    $response["message"] = "GET not set";
  
     // echo no users JSON
     echo json_encode($response);
