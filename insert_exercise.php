@@ -7,13 +7,14 @@
  
 // array for JSON response
 $response = array();
- 
+
 // check for required fields
-if (isset($_POST['id_cwiczenia']) && isset($_POST['id_uzytkownika']) && isset($_POST['data'])) {
+if (isset($_POST['id_cwiczenia']) && isset($_POST['id_uzytkownika']) && isset($_POST['data']) && isset($_POST['ilosc_wykonanych'])) {
  
     $id_cwiczenia = $_POST['id_cwiczenia'];
     $id_uzytkownika = $_POST['id_uzytkownika'];
     $data = $_POST['data'];
+	$ilosc_wykonanych = $_POST['ilosc_wykonanych'];
 	
 	//$response["email"] = $email;
 	//$email2 = $email;
@@ -33,7 +34,7 @@ if (isset($_POST['id_cwiczenia']) && isset($_POST['id_uzytkownika']) && isset($_
     $db = new DB_CONNECT();
  
     // mysql inserting a new row
-    $result = mysql_query("INSERT INTO cwiczenia_uzytkownika(id_cwiczenia, id_uzytkownika, data) VALUES ('$id_cwiczenia', '$id_uzytkownika', '$data')");
+    $result = mysql_query("INSERT INTO `cwiczenie_uzytkownika` (`id_cwiczenia`, `id_uzytkownika`, `data_wykonania`, `ilosc_wykonanych`, `czy_wykonane`) VALUES ('$id_cwiczenia', '$id_uzytkownika', '$data', '$ilosc_wykonanych', '0')");
 	
 	//$result = mysql_query("INSERT INTO cwiczenie_uzytkownika(id_cwiczenia, id_uzytkownika, data_wykonania) VALUES (2, 2, 2015-05-24)");
 	
