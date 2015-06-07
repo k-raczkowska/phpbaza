@@ -22,7 +22,7 @@ if (isset($_GET['userID']) && isset($_GET['interval'])) {
 	$interval = $_GET['interval'];
  
     // mysql update row with matched pid
-    $result = mysql_query("SELECT * FROM `cwiczenie_uzytkownika` WHERE id_uzytkownika = $userID AND DATE_SUB(CURDATE(),INTERVAL $interval DAY) <= data_wykonania ");
+    $result = mysql_query("SELECT * FROM `cwiczenie_uzytkownika` WHERE id_uzytkownika = $userID AND DATE_SUB(CURDATE(),INTERVAL $interval DAY) <= data_wykonania && data_wykonania <= CURDATE() ");
  
     
 	if (mysql_num_rows($result) > 0) {

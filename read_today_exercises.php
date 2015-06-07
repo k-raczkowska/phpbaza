@@ -14,7 +14,7 @@ require_once __DIR__ . '/db_connect.php';
 $db = new DB_CONNECT();
  
 // get all products from products table
-$result = mysql_query("SELECT cwiczenie_uzytkownika.id, d_cwiczenie.nazwa FROM cwiczenie_uzytkownika INNER JOIN d_cwiczenie ON cwiczenie_uzytkownika.id_cwiczenia = d_cwiczenie.id where data_wykonania = current_date ") or die(mysql_error());
+$result = mysql_query("SELECT cwiczenie_uzytkownika.id, d_cwiczenie.nazwa, cwiczenie_uzytkownika.czy_wykonane FROM cwiczenie_uzytkownika INNER JOIN d_cwiczenie ON cwiczenie_uzytkownika.id_cwiczenia = d_cwiczenie.id where data_wykonania = current_date ") or die(mysql_error());
  
 // check for empty result
 if (mysql_num_rows($result) > 0) {
@@ -27,6 +27,7 @@ if (mysql_num_rows($result) > 0) {
         $cwiczenia = array();
 		$cwiczenia["id"] = $row["id"];
         $cwiczenia["nazwa"] = $row["nazwa"];
+		$cwiczenia["czy_wykonane"] = $row["czy_wykonane"];
         // push single product into final response array
         array_push($response["cwiczenie_uzytkownika"], $cwiczenia);
     }

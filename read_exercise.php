@@ -21,7 +21,7 @@ if (isset($_GET['userID'])) {
     $userID = $_GET['userID'];
  
     // mysql update row with matched pid
-    $result = mysql_query("SELECT c.id_cwiczenia, c.id, nazwa FROM cwiczenie_uzytkownika c JOIN d_cwiczenie d ON d.id = c.id_cwiczenia WHERE id_uzytkownika = $userID AND data_wykonania = current_date ");
+    $result = mysql_query("SELECT c.id_cwiczenia, c.id, nazwa, c.czy_wykonane FROM cwiczenie_uzytkownika c JOIN d_cwiczenie d ON d.id = c.id_cwiczenia WHERE id_uzytkownika = $userID AND data_wykonania = current_date ");
  
     
 	if (mysql_num_rows($result) > 0) {
@@ -35,6 +35,7 @@ if (isset($_GET['userID'])) {
 		$cwiczenia_uzytkownika["id_cwiczenia"] = $row["id_cwiczenia"];
         $cwiczenia_uzytkownika["id"] = $row["id"];
 		$cwiczenia_uzytkownika["nazwa"] = $row["nazwa"];
+		$cwiczenia_uzytkownika["czy_wykonane"] = $row["czy_wykonane"];
         // push single product into final response array
         array_push($response["cwiczenie_uzytkownika"], $cwiczenia_uzytkownika);
     }
